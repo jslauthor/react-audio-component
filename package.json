@@ -1,0 +1,54 @@
+{
+  "name": "react-audio-component",
+  "version": "1.0.0",
+  "description": "A beautiful audio player built with React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jslauthor/react-audio-component.git"
+  },
+  "keywords": [
+    "audio",
+    "html5",
+    "react"
+  ],
+  "author": "J.S. Leonard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jslauthor/react-audio-component/issues"
+  },
+  "homepage": "https://github.com/jslauthor/react-audio-component#readme",
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "css-loader": "^0.23.1",
+    "postcss-bem": "^0.4.1",
+    "postcss-color-function": "^2.0.1",
+    "postcss-custom-media": "^5.0.1",
+    "postcss-import": "^8.1.2",
+    "postcss-loader": "^0.9.1",
+    "postcss-mixins": "^4.0.2",
+    "postcss-nested": "^1.0.0",
+    "postcss-sass-colors": "0.0.2",
+    "postcss-simple-vars": "^2.0.0",
+    "precss": "^1.4.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-init": "0.0.4"
+  },
+  "dependencies": {
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "imports-loader": "^0.6.5",
+    "json-loader": "^0.5.4",
+    "lodash": "^4.13.1",
+    "marked": "^0.3.5",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0"
+  }
+}
