@@ -1,17 +1,15 @@
-import React from 'react';
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import App from './containers/App'
+import configureStore from './store/configureStore'
+import './css/index.css'
 
-export default class ReactAudio extends React.Component {
-  static propTypes = {
-    name: React.PropTypes.string,
-  };
+const store = configureStore()
 
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div></div>
-    );
-  }
-}
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app')
+)

@@ -1,0 +1,34 @@
+@component rc-slider {
+
+  position: relative;
+  background-color: #536159;
+
+  .rc-slider-handle {
+    background-color: white;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    cursor: pointer;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+  }
+
+  .rc-slider-track {
+    height: 3px;
+    background-color: #5C8970;
+  }
+
+  .rc-slider-disabled.rc-slider-track {
+    background-color: #999999;
+  }
+
+  .rc-slider-handle-icon {
+    width: 12px;
+    height: 11px;
+  }
+
+}

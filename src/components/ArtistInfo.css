@@ -1,0 +1,28 @@
+@component artist-info {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  background-color: #3F413B;
+  flex-grow: 1;
+
+  @descendent cover {
+    width: 100%;
+    height: auto;
+    flex-grow: 1;
+    max-height: 257px;
+    max-width: 257px;
+  }
+
+  @descendent song {
+    height: 38px;
+    padding-left: 15px;
+    line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+}
+

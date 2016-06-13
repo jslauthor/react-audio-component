@@ -1,0 +1,34 @@
+@component utilities {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50px;
+  padding: 15px 0;
+
+  @modifier control {
+    margin-bottom: 7.5px;
+  }
+
+  @modifier play {
+    margin-bottom: 10px;
+  }
+
+  @modifier favorite {
+    fill: #EF4A9C;
+  }
+
+  @descendent social {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    * {
+      margin-top: 15px;
+      cursor: pointer;
+    }
+  }
+
+}
