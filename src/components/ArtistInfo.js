@@ -1,11 +1,11 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ReactSlider from 'rc-slider';
 import './ArtistInfo.css';
 import '../css/ReactSlider.css';
 import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import SpeakerIcon from './svg/SpeakerIcon.js';
-import TextFit from 'react-textfit';
 import Marquee from 'react-marquee';
 
 const SpeakerHandle = props =>
@@ -35,15 +35,24 @@ export default class ArtistInfo extends React.Component {
 
   render() {
 
-    const { title, artist, volume } = this.props;
+    const { title, artist, volume, songID } = this.props;
 
     const cover = !isEmpty(this.props.coverURL) ?
-      <img className="artist-info__cover" src={this.props.coverURL} /> :
+      <img key={songID} className="artist-info__cover" src={this.props.coverURL} /> :
       <div className="artist-info__cover">Loading</div>
 
     return (
       <div className="artist-info">
-        {cover}
+
+        <div className="artist-info__cover-container">
+          <ReactCSSTransitionGroup
+            transitionName="cover"
+            transitionEnterTimeout={250}
+            transitionLeaveTimeout={250}>
+            {cover}
+          </ReactCSSTransitionGroup>
+        </div>
+
         <ReactSlider
           onChange={this.onVolumeChange}
           value={volume}

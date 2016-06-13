@@ -26,6 +26,17 @@
     left: 50%;
   }
 
+  @modifier bg {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    border: none;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   .rc-progress-circle {
     width: 40px;
     height: 40px;

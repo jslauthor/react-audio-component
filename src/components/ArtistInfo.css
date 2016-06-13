@@ -8,14 +8,24 @@ $maxCoverSize: 257px;
   align-items: stretch;
   background-color: #3F413B;
   flex-grow: 1;
+  overflow: hidden;
+  max-width: $maxCoverSize;
+
+  @descendent cover-container {
+    height: $maxCoverSize;
+    width: $maxCoverSize;
+    display: flex;
+    user-select: none;
+    flex-grow: 1;
+    position: relative;
+  }
 
   @descendent cover {
     width: 100%;
     height: auto;
-    flex-grow: 1;
     max-height: $maxCoverSize;
     max-width: $maxCoverSize;
-    user-select: none;
+    position: absolute;
   }
 
   @descendent song {
@@ -43,23 +53,18 @@ $maxCoverSize: 257px;
   text-overflow: ellipsis;
 }
 
-/* Make it a marquee */
-.marquee {
-    width: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-    white-space: nowrap;
-    box-sizing: border-box;
-    animation: marquee 50s linear infinite;
+.cover-enter {
+  transform: translate(100%);
 }
-
-.marquee:hover {
-    animation-play-state: paused
+.cover-enter.cover-enter-active {
+  transform: translate(0%);
+  transition: transform 250ms ease-in-out;
 }
-
-/* Make it move */
-@keyframes marquee {
-    0%   { text-indent: 27.5em }
-    100% { text-indent: -105em }
+.cover-leave {
+  transform: translate(0%);
+}
+.cover-leave.cover-leave-active {
+  transform: translate(-100%);
+  transition: transform 250ms ease-in-out;
 }
 

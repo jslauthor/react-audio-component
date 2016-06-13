@@ -46,17 +46,16 @@ export default class AudioControlButton extends React.Component {
         <button className="audio-control_btn">
           {
             this.props.showProgress && range(0, this.props.progress.length).map((i) => {
-                const d = this.props.duration;
-                const start = this.props.progress.start(i);
-                const end = this.props.progress.end(i);
-                const buffer = (end - start) / d;
+              const d = this.props.duration;
+              const start = this.props.progress.start(i);
+              const end = this.props.progress.end(i);
+              const buffer = (end - start) / d;
 
-                return <div key={i} style={{transform: `rotate(${360*(start/d)} deg)`}}
-                            className="audio-control_progress-container">
-                          <Circle percent={buffer*100}
-                            strokeColor="#D9D9D9" strokeWidth={8} trailColor="#FFFFFFFF" />
-                       </div>
-
+              return <div key={i} style={{transform: `rotate(${360*(start/d)} deg)`}}
+                          className="audio-control_progress-container">
+                        <Circle percent={buffer*100}
+                          strokeColor="#D9D9D9" strokeWidth={8} trailColor="#FFFFFFFF" />
+                     </div>
             })
 
           }

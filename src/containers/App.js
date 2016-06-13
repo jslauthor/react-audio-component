@@ -90,6 +90,7 @@ export default class App extends React.Component {
           onToggleFavorite={this.handleToggleFavorite} />
         <ArtistInfo
           coverURL={song.coverURL}
+          songID={song.id}
           title={song.title}
           artist={song.artist}
           volume={volume}
