@@ -1,3 +1,5 @@
+@import '../css/variables.css';
+
 @component utilities {
 
   display: flex;
@@ -16,7 +18,25 @@
   }
 
   @modifier favorite {
-    fill: #EF4A9C;
+    fill: $pink;
+  }
+
+  @modifier repeating {
+    fill: $dark_green;
+  }
+
+  @modifier btn-green {
+    transition: .5s all ease;
+    &:hover {
+      fill: color($dark_green saturation(10%));
+    }
+  }
+
+  @modifier btn-pink {
+    transition: .5s all ease;
+    &:hover {
+      fill: color($pink saturation(10%));
+    }
   }
 
   @descendent social {

@@ -6,6 +6,7 @@ import * as AudioActions from '../actions'
 import Utilities from '../components/Utilities';
 import ArtistInfo from '../components/ArtistInfo';
 import ReactAudio from '../audio/ReactAudio';
+import find from 'lodash/find';
 import './App.css';
 
 @connect(
@@ -16,14 +17,15 @@ import './App.css';
 export default class App extends React.Component {
 
   componentDidMount() {
-    // Initialize DOM Audio
+    // Initialize DOM Audio and retrieve
     this.props.updateVolume(ReactDOM.findDOMNode(this.refs.audio), this.props.audio.volume);
     this.props.setProgress(ReactDOM.findDOMNode(this.refs.audio));
     this.props.setTime(ReactDOM.findDOMNode(this.refs.audio));
+    this.props.retrieveSongs();
   }
 
   handleProgress = () => {
-     this.props.setProgress(ReactDOM.findDOMNode(this.refs.audio));
+    this.props.setProgress(ReactDOM.findDOMNode(this.refs.audio));
   }
 
   handleTimeupdate = () => {
@@ -39,27 +41,38 @@ export default class App extends React.Component {
   }
 
   handleNext = () => {
-
+    this.props.next();
   }
 
   handlePrevious = () => {
-
+    this.props.previous();
   }
 
   handleVolumeChange = (volume) => {
     this.props.updateVolume(ReactDOM.findDOMNode(this.refs.audio), volume);
   }
 
+  handleToggleFavorite = () => {
+    this.props.toggleFavorite();
+  }
+
+  handleToggleRepeat = () => {
+    this.props.toggleRepeat();
+  }
+
   render() {
 
-    const { volume, isPlaying, percent, isFavorite, progress, duration } = this.props.audio;
+    const { volume, isPlaying, percent, isFavorite, progress, duration, isRepeating, songs, currentID } = this.props.audio;
+    let song = find(songs, (o) => o.id === currentID);
+
+    if (song === undefined) song = this.props.audio.defaultSong;
 
     return (
       <div className="app">
         <ReactAudio
             ref="audio"
             autoplay={false}
-            source="/public/Consolation.mp3"
+            source={song.audioFile}
             onProgress={this.handleProgress}
             onTimeupdate={this.handleTimeupdate}
             onError={this.handleError} />
@@ -70,13 +83,16 @@ export default class App extends React.Component {
           duration={duration}
           onPlay={this.handlePlay}
           onNext={this.handleNext}
-          onPrevious={this.handlePrevious} />
+          onPrevious={this.handlePrevious}
+          isFavorite={song.favorite}
+          isRepeating={isRepeating}
+          onToggleRepeat={this.handleToggleRepeat}
+          onToggleFavorite={this.handleToggleFavorite} />
         <ArtistInfo
-          coverURL="https://i1.sndcdn.com/artworks-000166937249-gcv1rk-t500x500.jpg"
-          title="Consolation"
-          artist="Miro"
+          coverURL={song.coverURL}
+          title={song.title}
+          artist={song.artist}
           volume={volume}
-          isFavorite={isFavorite}
           onVolumeChange={this.handleVolumeChange} />
       </div>
     );

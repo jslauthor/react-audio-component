@@ -5,6 +5,8 @@ import '../css/ReactSlider.css';
 import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import SpeakerIcon from './svg/SpeakerIcon.js';
+import TextFit from 'react-textfit';
+import Marquee from 'react-marquee';
 
 const SpeakerHandle = props =>
   <div className="rc-slider-handle" style={{left: Math.max((props.offset*.96), 4) + '%'}}>
@@ -47,8 +49,10 @@ export default class ArtistInfo extends React.Component {
           value={volume}
           handle={<SpeakerHandle />} />
         <div className="artist-info__song">
-          <h2>{title}</h2>
-          <h6>{artist}</h6>
+          <div className="artist-info_title">
+              <Marquee text={title} hoverToStop={true} loop={true} />
+          </div>
+          <h6 className="truncate">{artist}</h6>
         </div>
       </div>
     );

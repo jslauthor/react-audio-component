@@ -1,3 +1,5 @@
+@import './variables.css';
+
 @component rc-slider {
 
   position: relative;
@@ -19,7 +21,7 @@
 
   .rc-slider-track {
     height: 3px;
-    background-color: #5C8970;
+    background-color: $dark_green;
   }
 
   .rc-slider-disabled.rc-slider-track {

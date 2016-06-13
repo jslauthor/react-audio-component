@@ -1,4 +1,10 @@
 import * as types from '../constants/ActionTypes'
+import data from '../store/songs.json';
+
+export function retrieveSongs() {
+  // This could be written as a thunk or saga
+  return { type: types.INITIALIZE, songs: data.songs }
+}
 
 export function play(audio) {
   if (audio.paused)
@@ -7,10 +13,6 @@ export function play(audio) {
       audio.pause();
 
   return { type: types.PLAY, isPlaying: !audio.paused }
-}
-
-export function pause() {
-  return { type: types.PAUSE }
 }
 
 export function next() {
@@ -37,4 +39,12 @@ export function setProgress(audio) {
 
 export function updatePosition(position) {
   return { type: types.UPDATE_POSITION, position }
+}
+
+export function toggleFavorite(id) {
+  return { type: types.TOGGLE_FAVORITE, id }
+}
+
+export function toggleRepeat() {
+  return { type: types.TOGGLE_REPEAT }
 }

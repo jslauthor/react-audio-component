@@ -1,3 +1,5 @@
+$maxCoverSize: 257px;
+
 @component artist-info {
 
   display: flex;
@@ -11,18 +13,53 @@
     width: 100%;
     height: auto;
     flex-grow: 1;
-    max-height: 257px;
-    max-width: 257px;
+    max-height: $maxCoverSize;
+    max-width: $maxCoverSize;
+    user-select: none;
   }
 
   @descendent song {
-    height: 38px;
-    padding-left: 15px;
-    line-height: 1.2;
+    height: 51px;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: $maxCoverSize;
+  }
+
+  @modifier title {
+    height: 22px;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
+}
+
+.truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Make it a marquee */
+.marquee {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    animation: marquee 50s linear infinite;
+}
+
+.marquee:hover {
+    animation-play-state: paused
+}
+
+/* Make it move */
+@keyframes marquee {
+    0%   { text-indent: 27.5em }
+    100% { text-indent: -105em }
 }
 

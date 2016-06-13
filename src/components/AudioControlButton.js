@@ -51,7 +51,7 @@ export default class AudioControlButton extends React.Component {
                 const end = this.props.progress.end(i);
                 const buffer = (end - start) / d;
 
-                return <div key={i} style={{transform: `rotate(${360*(start/d)} deg) translate(-50%, -50%)`}}
+                return <div key={i} style={{transform: `rotate(${360*(start/d)} deg)`}}
                             className="audio-control_progress-container">
                           <Circle percent={buffer*100}
                             strokeColor="#D9D9D9" strokeWidth={8} trailColor="#FFFFFFFF" />

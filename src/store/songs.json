@@ -1,16 +1,20 @@
 {
  "songs": [
     {
+      "id": 1,
       "coverURL": "/public/miro_cover.jpg",
-      "audioFile": "/public/Consolation.mp3"
+      "audioFile": "/public/Consolation.mp3",
       "title": "Miro",
-      "artist": "Consolation"
+      "artist": "Consolation",
+      "favorite": true
     },
     {
+      "id": 2,
       "coverURL": "/public/illenium_cover.jpg",
-      "audioFile": "/public/with_u_newVersion_4_FINAL.mp3"
+      "audioFile": "/public/with_u_newVersion_4_FINAL.mp3",
       "title": "Illenium - With You (ft. Quinn XCII) (Crystal Skies Remix)",
-      "artist": "Crystal Skies"
+      "artist": "Crystal Skies",
+      "favorite": false
     }
   ]
 }
