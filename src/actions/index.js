@@ -15,12 +15,14 @@ export function play(audio) {
   return { type: types.PLAY, isPlaying: !audio.paused }
 }
 
-export function next() {
-  return { type: types.NEXT }
+export function next(audio) {
+  audio.currentTime = 0;
+  return { type: types.NEXT, isPlaying: !audio.paused }
 }
 
-export function previous() {
-  return { type: types.PREVIOUS }
+export function previous(audio) {
+  audio.currentTime = 0;
+  return { type: types.PREVIOUS, isPlaying: !audio.paused }
 }
 
 export function updateVolume(audio, volume) {

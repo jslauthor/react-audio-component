@@ -41,11 +41,11 @@ export default class App extends React.Component {
   }
 
   handleNext = () => {
-    this.props.next();
+    this.props.next(ReactDOM.findDOMNode(this.refs.audio));
   }
 
   handlePrevious = () => {
-    this.props.previous();
+    this.props.previous(ReactDOM.findDOMNode(this.refs.audio));
   }
 
   handleVolumeChange = (volume) => {
@@ -62,7 +62,11 @@ export default class App extends React.Component {
 
   render() {
 
-    const { volume, isPlaying, percent, isFavorite, progress, duration, isRepeating, songs, currentID } = this.props.audio;
+    const {
+      volume, isPlaying, percent, isFavorite, progress,
+      duration, isRepeating, songs, currentID, autoplay
+    } = this.props.audio;
+
     let song = find(songs, (o) => o.id === currentID);
 
     if (song === undefined) song = this.props.audio.defaultSong;
@@ -71,7 +75,7 @@ export default class App extends React.Component {
       <div className="app">
         <ReactAudio
             ref="audio"
-            autoplay={false}
+            autoplay={autoplay}
             source={song.audioFile}
             onProgress={this.handleProgress}
             onTimeupdate={this.handleTimeupdate}
@@ -81,6 +85,7 @@ export default class App extends React.Component {
           percent={percent*100}
           progress={progress}
           duration={duration}
+          disableChange={songs.length <= 1}
           onPlay={this.handlePlay}
           onNext={this.handleNext}
           onPrevious={this.handlePrevious}

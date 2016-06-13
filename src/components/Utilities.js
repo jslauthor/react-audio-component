@@ -39,19 +39,24 @@ export default class Utilities extends React.Component {
       'utilities_btn-green': !this.props.isRepeating,
       'utilities_repeating': this.props.isRepeating
     });
+    const controlClasses = cx({
+      'utilities_control': true,
+      'disabled': this.props.disableChange,
+      'splash-anim': true
+    })
 
     return (
       <div className="utilities">
         <AudioControl
-          className="utilities_play"
+          className="utilities_play splash-anim"
           mode={playMode} showProgress={true}
           percent={this.props.percent}
           duration={this.props.duration}
           progress={this.props.progress}
           onClick={this.props.onPlay} />
-        <AudioControl mode="next" className="utilities_control" onClick={this.props.onNext} />
-        <AudioControl mode="previous" className="utilities_control" onClick={this.props.onPrevious} />
-        <div className="utilities__social">
+        <AudioControl mode="next" className={controlClasses} onClick={this.props.onNext} disabled={this.props.disableChange} />
+        <AudioControl mode="previous" className={controlClasses} onClick={this.props.onPrevious} disabled={this.props.disableChange}/>
+        <div className="utilities__social splash-anim">
           <RepeatIcon className={repeatClasses} onClick={this.props.onToggleRepeat} />
           <ShareIcon className="utilities_btn-green" />
           <HeartIcon className={heartClasses} onClick={this.props.onToggleFavorite} />

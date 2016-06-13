@@ -36,7 +36,14 @@ class ReactAudio extends React.Component {
         };
     }
 
-    // get audio() { return ReactDOM.findDOMNode(this.refs.audio); }
+    get audio() {
+        if (!this.refs)
+            return {};
+
+        return ReactDOM.findDOMNode(this.refs.audio);
+    }
+
+    set audio(a) {}
 
     handler(e, func) {
         if (isFunction(func)) {

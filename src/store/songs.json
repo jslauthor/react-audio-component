@@ -15,6 +15,30 @@
       "title": "Illenium - With You (ft. Quinn XCII) (Crystal Skies Remix)",
       "artist": "Crystal Skies",
       "favorite": false
+    },
+    {
+      "id": 3,
+      "coverURL": "/public/illenium_cover.jpg",
+      "audioFile": "/public/with_u_newVersion_4_FINAL.mp3",
+      "title": "Another",
+      "artist": "Another",
+      "favorite": true
+    },
+    {
+      "id": 4,
+      "coverURL": "/public/miro_cover.jpg",
+      "audioFile": "/public/with_u_newVersion_4_FINAL.mp3",
+      "title": "Illenium",
+      "artist": "Crystal",
+      "favorite": false
+    },
+    {
+      "id": 5,
+      "coverURL": "/public/illenium_cover.jpg",
+      "audioFile": "/public/with_u_newVersion_4_FINAL.mp3",
+      "title": "Delerium",
+      "artist": "Title",
+      "favorite": true
     }
   ]
 }

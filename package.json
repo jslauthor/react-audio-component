@@ -53,6 +53,7 @@
     "raf": "^3.2.0",
     "rc-progress": "^1.0.4",
     "rc-slider": "^3.7.1",
+    "rc-tooltip": "^3.3.2",
     "react": "^15.1.0",
     "react-addons-css-transition-group": "^15.1.0",
     "react-dom": "^15.1.0",

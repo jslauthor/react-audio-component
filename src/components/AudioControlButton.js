@@ -43,7 +43,7 @@ export default class AudioControlButton extends React.Component {
 
     return (
       <div className={`audio-control ${get(this.props, 'className', '')}`} onClick={this.props.onClick}>
-        <button className="audio-control_btn">
+        <button className="audio-control_btn" disabled={this.props.disabled}>
           {
             this.props.showProgress && range(0, this.props.progress.length).map((i) => {
               const d = this.props.duration;

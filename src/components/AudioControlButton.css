@@ -9,6 +9,7 @@
   cursor: pointer;
 
   @modifier btn {
+    transition: .25s all ease;
     width: 28px;
     height: 28px;
     background-color: $base_bg_color;
@@ -17,6 +18,12 @@
     cursor: pointer;
     &:focus {
       outline: none;
+    }
+    &:hover {
+      background-color: color($base_bg_color tint(30%));
+    }
+    &:disabled {
+      background-color: color($base_bg_color tint(82%));
     }
   }
 
@@ -51,4 +58,8 @@
     margin-left: 1px;
   }
 
+}
+
+.disabled {
+  pointer-events: none;
 }

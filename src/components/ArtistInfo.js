@@ -37,10 +37,6 @@ export default class ArtistInfo extends React.Component {
 
     const { title, artist, volume, songID } = this.props;
 
-    const cover = !isEmpty(this.props.coverURL) ?
-      <img key={songID} className="artist-info__cover" src={this.props.coverURL} /> :
-      <div className="artist-info__cover">Loading</div>
-
     return (
       <div className="artist-info">
 
@@ -49,7 +45,7 @@ export default class ArtistInfo extends React.Component {
             transitionName="cover"
             transitionEnterTimeout={250}
             transitionLeaveTimeout={250}>
-            {cover}
+            <img key={songID} className="artist-info__cover" src={this.props.coverURL} />
           </ReactCSSTransitionGroup>
         </div>
 
