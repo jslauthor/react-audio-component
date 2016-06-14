@@ -21,7 +21,7 @@ export function pause(audio) {
 }
 
 function resetAudio(audio) {
-  // need to reset the song if it's the same
+  // need to reset the song if it's the same file
   audio.currentTime = 0;
   const src = audio.src;
   audio.src = null;
