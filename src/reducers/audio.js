@@ -2,7 +2,8 @@ import {
   INITIALIZE,
   UPDATE_VOLUME, NEXT, PREVIOUS,
   PLAY, SET_TIME, SET_PROGRESS,
-  TOGGLE_FAVORITE, TOGGLE_REPEAT
+  TOGGLE_FAVORITE, TOGGLE_REPEAT,
+  UPDATE_POSITION
 } from '../constants/ActionTypes'
 
 import find from 'lodash/find';
@@ -65,7 +66,9 @@ export default function audio(state = initialState, action) {
     case UPDATE_VOLUME:
       return {...state, volume: action.volume };
     case SET_TIME:
-      return {...state, percent: action.time };
+      return {...state, percent: action.percent };
+    case UPDATE_POSITION:
+      return {...state, percent: action.percent };
     case SET_PROGRESS:
       return {...state, progress: action.progress, duration: action.duration };
     case TOGGLE_FAVORITE:

@@ -60,6 +60,17 @@ export default class App extends React.Component {
     this.props.toggleRepeat();
   }
 
+  handleTrackClick = (percent) => {
+    this.props.updatePosition(ReactDOM.findDOMNode(this.refs.audio), percent/100);
+  }
+
+  handleEnd = () => {
+    console.log('hi!')
+    if (this.props.audio.isRepeating) {
+      this.props.next(ReactDOM.findDOMNode(this.refs.audio));
+    }
+  }
+
   render() {
 
     const {
@@ -73,13 +84,16 @@ export default class App extends React.Component {
 
     return (
       <div className="app">
+
         <ReactAudio
             ref="audio"
             autoplay={autoplay}
             source={song.audioFile}
             onProgress={this.handleProgress}
             onTimeupdate={this.handleTimeupdate}
-            onError={this.handleError} />
+            onError={this.handleError}
+            onEnded={this.handleEnd} />
+
         <Utilities
           isPlaying={isPlaying}
           percent={percent*100}
@@ -91,6 +105,7 @@ export default class App extends React.Component {
           onPrevious={this.handlePrevious}
           isFavorite={song.favorite}
           isRepeating={isRepeating}
+          onTrackClick={this.handleTrackClick}
           onToggleRepeat={this.handleToggleRepeat}
           onToggleFavorite={this.handleToggleFavorite} />
         <ArtistInfo

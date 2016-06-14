@@ -50,6 +50,7 @@ export default class Utilities extends React.Component {
         <AudioControl
           className="utilities_play splash-anim"
           mode={playMode} showProgress={true}
+          onTrackClick={this.props.onTrackClick}
           percent={this.props.percent}
           duration={this.props.duration}
           progress={this.props.progress}

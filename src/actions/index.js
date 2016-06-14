@@ -16,12 +16,12 @@ export function play(audio) {
 }
 
 export function next(audio) {
-  audio.currentTime = 0;
+  audio.currentTime = 0; // need to reset the song if it's the same
   return { type: types.NEXT, isPlaying: !audio.paused }
 }
 
 export function previous(audio) {
-  audio.currentTime = 0;
+  audio.currentTime = 0; // need to reset the song if it's the same
   return { type: types.PREVIOUS, isPlaying: !audio.paused }
 }
 
@@ -31,16 +31,17 @@ export function updateVolume(audio, volume) {
 }
 
 export function setTime(audio) {
-  const time = audio.currentTime / audio.duration;
-  return { type: types.SET_TIME, time }
+  const percent = audio.currentTime / audio.duration;
+  return { type: types.SET_TIME, percent }
 }
 
 export function setProgress(audio) {
   return { type: types.SET_PROGRESS, progress: audio.buffered, duration: audio.duration }
 }
 
-export function updatePosition(position) {
-  return { type: types.UPDATE_POSITION, position }
+export function updatePosition(audio, percent) {
+  audio.currentTime = percent * audio.duration;
+  return { type: types.UPDATE_POSITION, percent: audio.currentTime / audio.duration }
 }
 
 export function toggleFavorite(id) {

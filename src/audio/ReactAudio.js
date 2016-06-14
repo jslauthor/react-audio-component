@@ -14,7 +14,8 @@ class ReactAudio extends React.Component {
         volume: React.PropTypes.number,
         onTimeupdate: React.PropTypes.func,
         onError: React.PropTypes.func,
-        onProgress: React.PropTypes.func
+        onProgress: React.PropTypes.func,
+        onEnded: React.PropTypes.func
     };
 
     static defaultProps = {
@@ -25,7 +26,8 @@ class ReactAudio extends React.Component {
         volume: .8,
         onTimeupdate: null,
         onError: null,
-        onProgress: null
+        onProgress: null,
+        onEnded: null
     };
 
     constructor(props) {
@@ -69,6 +71,7 @@ class ReactAudio extends React.Component {
         this.addListener('timeupdate', this.props.onTimeupdate);
         this.addListener('progress', this.props.onProgress);
         this.addListener('error', this.props.onError);
+        this.addListener('ended', this.props.onEnded);
     }
 
     componentWillUnmount() {
