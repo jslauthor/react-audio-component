@@ -79,6 +79,8 @@ $maxCoverSize: 257px;
     overflow: hidden;
     white-space: nowrap;
     top: -2px;
+    padding: 0;
+    margin: 0;
     h2 { display: inline; }
   }
 
@@ -86,8 +88,6 @@ $maxCoverSize: 257px;
     animation: marquee 5s linear infinite;
     animation-delay: 1s;
     animation-direction: alternate;
-    padding: 0;
-    margin: 0;
   }
 }
 

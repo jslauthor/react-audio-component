@@ -20,7 +20,8 @@ export default class ArtistInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showMarquee: false
+      showMarquee: false,
+      marqueeDuration: 0
     }
   }
 
@@ -42,7 +43,8 @@ export default class ArtistInfo extends React.Component {
     const shouldShow = (node.scrollWidth - node.clientWidth) > 0;
     if (this.state.showMarquee != shouldShow) {
       this.setState({
-        showMarquee: shouldShow
+        showMarquee: shouldShow,
+        marqueeDuration: (node.scrollWidth / node.clientWidth) * 3
       });
     }
   }
@@ -56,11 +58,13 @@ export default class ArtistInfo extends React.Component {
   render() {
 
     const { title, artist, volume, songID } = this.props;
-    console.log(this.state.showMarquee)
-    const titleClasses = cx({
-      'marquee_content': true,
-      'marquee_animate': this.state.showMarquee
-    })
+
+    console.log(this.state.marqueeDuration)
+    const animate = {
+      animation: `marquee ${this.state.marqueeDuration}s linear infinite`,
+      animationDelay: '1s',
+      animationDirection: 'alternate'
+    };
 
     return (
       <div className="artist-info">
@@ -81,7 +85,8 @@ export default class ArtistInfo extends React.Component {
         <div className="artist-info__song">
           <div className="artist-info_title">
             <div ref="marquee" className="marquee">
-              <div className={titleClasses}>
+              <div className="marquee_content"
+                   style={this.state.showMarquee ? animate : {}}>
                 <h2>{title}</h2>
               </div>
             </div>

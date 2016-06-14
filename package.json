@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "deploy": "webpack -p --config webpack.prod.js --output-file audio_player.js && mv public/audio_player.js ../../portfolio/jslauthor.github.io/public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
