@@ -43,17 +43,11 @@ export default class App extends React.Component {
   handleNext = () => {
     const audio = ReactDOM.findDOMNode(this.refs.audio);
     this.props.next(audio);
-    if (this.props.audio.isRepeating) {
-      this.props.play(audio);
-    }
   }
 
   handlePrevious = () => {
     const audio = ReactDOM.findDOMNode(this.refs.audio);
     this.props.previous(audio);
-    if (this.props.audio.isRepeating) {
-      this.props.play(audio);
-    }
   }
 
   handleVolumeChange = (volume) => {
@@ -76,7 +70,6 @@ export default class App extends React.Component {
     const audio = ReactDOM.findDOMNode(this.refs.audio);
     if (this.props.audio.isRepeating) {
       this.props.next(audio);
-      this.props.play(audio);
     } else {
       this.props.pause(audio);
     }
@@ -84,6 +77,13 @@ export default class App extends React.Component {
 
   handleToggleLoop = () => {
     this.props.toggleLoop(ReactDOM.findDOMNode(this.refs.audio));
+  }
+
+  handleLoadedData = () => {
+    const audio = ReactDOM.findDOMNode(this.refs.audio);
+    if (this.props.audio.isRepeating) {
+      this.props.play(audio);
+    }
   }
 
   render() {
@@ -106,7 +106,8 @@ export default class App extends React.Component {
             onProgress={this.handleProgress}
             onTimeupdate={this.handleTimeupdate}
             onError={this.handleError}
-            onEnded={this.handleEnd} />
+            onEnded={this.handleEnd}
+            onLoadedData={this.handleLoadedData} />
 
         <Utilities
           isPlaying={isPlaying}

@@ -72,6 +72,7 @@ class ReactAudio extends React.Component {
         this.addListener('progress', this.props.onProgress);
         this.addListener('error', this.props.onError);
         this.addListener('ended', this.props.onEnded);
+        this.addListener('loadeddata', this.props.onLoadedData);
     }
 
     componentWillUnmount() {
