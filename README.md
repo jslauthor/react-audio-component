@@ -1,6 +1,10 @@
-# react-audio-component
+# React Audio Component Example Project
 
 A beautiful example project demonstrating how to build an audio player in React.
+
+## The Player
+
+![Audio Player](http://leonardsouza.com/public/images/portfolio/audio_player.jpg)
 
 Demo [here](http://leonardsouza.com/react-audio-example.html). Check it out!
 
