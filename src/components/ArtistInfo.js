@@ -41,8 +41,9 @@ export default class ArtistInfo extends React.Component {
 
   // This is dangerous. Never set state on update without a clear condition
   componentDidUpdate() {
+    const title = ReactDOM.findDOMNode(this.refs.title);
     const node = ReactDOM.findDOMNode(this.refs.marquee);
-    const shouldShow = (node.scrollWidth - node.clientWidth) > 0;
+    const shouldShow = (title.getBoundingClientRect().width - node.clientWidth) > 0;
     if (this.state.showMarquee != shouldShow) {
       this.setState({
         showMarquee: shouldShow,
@@ -69,6 +70,8 @@ export default class ArtistInfo extends React.Component {
       animationDelay: '1s',
       animationDirection: 'alternate'
     };
+
+
 
     return (
       <div className="artist-info">
@@ -100,7 +103,7 @@ export default class ArtistInfo extends React.Component {
             <div ref="marquee" className="marquee">
               <div className="marquee_content"
                    style={this.state.showMarquee ? animate : {}}>
-                <h2>{title}</h2>
+                <h2 ref="title">{title}</h2>
               </div>
             </div>
           </div>
