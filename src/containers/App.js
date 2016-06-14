@@ -33,7 +33,7 @@ export default class App extends React.Component {
   }
 
   handleError = (e) => {
-
+    this.props.setError(ReactDOM.findDOMNode(this.refs.audio));
   }
 
   handlePlay = () => {
@@ -89,7 +89,7 @@ export default class App extends React.Component {
   render() {
 
     const {
-      volume, isPlaying, percent, isFavorite, progress,
+      volume, isPlaying, percent, isFavorite, progress, error,
       duration, isRepeating, songs, currentID, autoplay, isLooping
     } = this.props.audio;
 
@@ -132,6 +132,7 @@ export default class App extends React.Component {
           title={song.title}
           artist={song.artist}
           volume={volume}
+          hasError={error != null}
           onVolumeChange={this.handleVolumeChange} />
 
       </div>

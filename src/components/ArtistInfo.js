@@ -30,11 +30,13 @@ export default class ArtistInfo extends React.Component {
     title: React.PropTypes.string,
     artist: React.PropTypes.string,
     onVolumeChange: React.PropTypes.func,
-    volume: React.PropTypes.number
+    volume: React.PropTypes.number,
+    hasError: React.PropTypes.bool
   };
 
   static defaultProps = {
-    volume: 75
+    volume: 75,
+    hasError: false
   };
 
   // This is dangerous. Never set state on update without a clear condition
@@ -61,7 +63,7 @@ export default class ArtistInfo extends React.Component {
 
   render() {
 
-    const { title, artist, volume, songID } = this.props;
+    const { title, artist, volume, songID, hasError } = this.props;
     const animate = {
       animation: `marquee ${this.state.marqueeDuration}s linear infinite`,
       animationDelay: '1s',
@@ -70,6 +72,13 @@ export default class ArtistInfo extends React.Component {
 
     return (
       <div className="artist-info">
+
+        {
+          hasError &&
+          <div className="artist-info__error">
+            Error Playing Media
+          </div>
+        }
 
         <div className="artist-info__cover-container">
           <ReactCSSTransitionGroup
@@ -85,6 +94,7 @@ export default class ArtistInfo extends React.Component {
           onChange={this.onVolumeChange}
           value={volume}
           handle={<SpeakerHandle />} />
+
         <div className="artist-info__song">
           <div className="artist-info_title">
             <div ref="marquee" className="marquee">
@@ -96,6 +106,7 @@ export default class ArtistInfo extends React.Component {
           </div>
           <h6 className="truncate">{artist}</h6>
         </div>
+
       </div>
     );
   }

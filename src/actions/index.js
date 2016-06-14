@@ -52,6 +52,10 @@ export function setProgress(audio) {
   return { type: types.SET_PROGRESS, audio }
 }
 
+export function setError(audio) {
+  return { type: types.ERROR, audio }
+}
+
 export function updatePosition(audio, percent) {
   audio.currentTime = percent * audio.duration;
   return { type: types.UPDATE_POSITION, audio }

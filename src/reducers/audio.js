@@ -1,5 +1,5 @@
 import {
-  INITIALIZE,
+  INITIALIZE, ERROR,
   UPDATE_VOLUME, NEXT, PREVIOUS,
   PLAY, SET_TIME, SET_PROGRESS,
   TOGGLE_FAVORITE, TOGGLE_REPEAT,
@@ -50,7 +50,8 @@ function getAudioState(audio) {
     percent: audio.currentTime / audio.duration,
     progress: audio.buffered,
     duration: audio.duration,
-    isLooping: audio.loop
+    isLooping: audio.loop,
+    error: audio.error
   }
 
   return test;
@@ -63,6 +64,7 @@ export default function audio(state = initialState, action) {
       return {...state, songs: songsArray, currentID: songsArray[0].id };
     case PLAY:
     case PAUSE:
+    case ERROR:
       return {...state, ...getAudioState(action.audio) };
     case NEXT:
       return {

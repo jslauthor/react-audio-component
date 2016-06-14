@@ -10,6 +10,7 @@ $maxCoverSize: 257px;
   flex-grow: 1;
   overflow: hidden;
   max-width: $maxCoverSize;
+  position: relative;
 
   @descendent cover-container {
     height: $maxCoverSize;
@@ -42,6 +43,18 @@ $maxCoverSize: 257px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  @descendent error {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 40;
   }
 
 }
