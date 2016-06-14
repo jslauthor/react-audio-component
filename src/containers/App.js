@@ -73,15 +73,18 @@ export default class App extends React.Component {
     }
   }
 
+  handleToggleLoop = () => {
+    this.props.toggleLoop(ReactDOM.findDOMNode(this.refs.audio));
+  }
+
   render() {
 
     const {
       volume, isPlaying, percent, isFavorite, progress,
-      duration, isRepeating, songs, currentID, autoplay
+      duration, isRepeating, songs, currentID, autoplay, isLooping
     } = this.props.audio;
 
     let song = find(songs, (o) => o.id === currentID);
-
     if (song === undefined) song = this.props.audio.defaultSong;
 
     return (
@@ -107,9 +110,12 @@ export default class App extends React.Component {
           onPrevious={this.handlePrevious}
           isFavorite={song.favorite}
           isRepeating={isRepeating}
+          isLooping={isLooping}
           onTrackClick={this.handleTrackClick}
           onToggleRepeat={this.handleToggleRepeat}
-          onToggleFavorite={this.handleToggleFavorite} />
+          onToggleFavorite={this.handleToggleFavorite}
+          onToggleLoop={this.handleToggleLoop} />
+
         <ArtistInfo
           coverURL={song.coverURL}
           songID={song.id}
@@ -117,6 +123,7 @@ export default class App extends React.Component {
           artist={song.artist}
           volume={volume}
           onVolumeChange={this.handleVolumeChange} />
+
       </div>
     );
   }

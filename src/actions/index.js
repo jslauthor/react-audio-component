@@ -12,22 +12,30 @@ export function play(audio) {
   else
       audio.pause();
 
-  return { type: types.PLAY, isPlaying: !audio.paused }
+  return { type: types.PLAY, audio }
 }
 
 export function pause(audio) {
   audio.pause();
-  return { type: types.PAUSE, isPlaying: !audio.paused }
+  return { type: types.PAUSE, audio }
+}
+
+function resetAudio(audio) {
+  // need to reset the song if it's the same
+  audio.currentTime = 0;
+  const src = audio.src;
+  audio.src = null;
+  audio.src = src;
 }
 
 export function next(audio) {
-  audio.currentTime = 0; // need to reset the song if it's the same
-  return { type: types.NEXT, isPlaying: !audio.paused }
+  resetAudio(audio)
+  return { type: types.NEXT, audio }
 }
 
 export function previous(audio) {
-  audio.currentTime = 0; // need to reset the song if it's the same
-  return { type: types.PREVIOUS, isPlaying: !audio.paused }
+  resetAudio(audio)
+  return { type: types.PREVIOUS, audio }
 }
 
 export function updateVolume(audio, volume) {
@@ -37,16 +45,16 @@ export function updateVolume(audio, volume) {
 
 export function setTime(audio) {
   const percent = audio.currentTime / audio.duration;
-  return { type: types.SET_TIME, percent }
+  return { type: types.SET_TIME, audio }
 }
 
 export function setProgress(audio) {
-  return { type: types.SET_PROGRESS, progress: audio.buffered, duration: audio.duration }
+  return { type: types.SET_PROGRESS, audio }
 }
 
 export function updatePosition(audio, percent) {
   audio.currentTime = percent * audio.duration;
-  return { type: types.UPDATE_POSITION, percent: audio.currentTime / audio.duration }
+  return { type: types.UPDATE_POSITION, audio }
 }
 
 export function toggleFavorite(id) {
@@ -55,4 +63,9 @@ export function toggleFavorite(id) {
 
 export function toggleRepeat() {
   return { type: types.TOGGLE_REPEAT }
+}
+
+export function toggleLoop(audio) {
+  audio.loop = !audio.loop;
+  return { type: types.TOGGLE_LOOP, audio }
 }

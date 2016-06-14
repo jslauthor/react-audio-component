@@ -3,7 +3,7 @@ import {
   UPDATE_VOLUME, NEXT, PREVIOUS,
   PLAY, SET_TIME, SET_PROGRESS,
   TOGGLE_FAVORITE, TOGGLE_REPEAT,
-  UPDATE_POSITION, PAUSE
+  UPDATE_POSITION, PAUSE, TOGGLE_LOOP
 } from '../constants/ActionTypes'
 
 import find from 'lodash/find';
@@ -16,6 +16,7 @@ const initialState = {
   isPlaying: false,
   isFavorite: false,
   isRepeating: false,
+  isLooping: false,
   percent: 0,
   volume: 65,
   progress: {},
@@ -44,6 +45,18 @@ function getAdjacentSong(songs, startIndex, direction) {
   return songs[nextIndex].id;
 }
 
+function getAudioState(audio) {
+  var test = {
+    isPlaying: !audio.paused,
+    percent: audio.currentTime / audio.duration,
+    progress: audio.buffered,
+    duration: audio.duration,
+    isLooping: audio.loop
+  }
+
+  return test;
+}
+
 export default function audio(state = initialState, action) {
   switch (action.type) {
     case INITIALIZE:
@@ -51,27 +64,27 @@ export default function audio(state = initialState, action) {
       return {...state, songs: songsArray, currentID: songsArray[0].id };
     case PLAY:
     case PAUSE:
-      return {...state, isPlaying: action.isPlaying, autoplay: true };
+      return {...state, ...getAudioState(action.audio), autoplay: true };
     case NEXT:
       return {
         ...state,
         currentID: getAdjacentSong(state.songs, getSongIndex(state.songs, state.currentID), 1),
-        isPlaying: action.isPlaying
+        ...getAudioState(action.audio)
       };
     case PREVIOUS:
       return {
         ...state,
         currentID: getAdjacentSong(state.songs, getSongIndex(state.songs, state.currentID), -1),
-        isPlaying: action.isPlaying
+        ...getAudioState(action.audio)
       };
     case UPDATE_VOLUME:
       return {...state, volume: action.volume };
     case SET_TIME:
-      return {...state, percent: action.percent };
+      return {...state, ...getAudioState(action.audio) };
     case UPDATE_POSITION:
-      return {...state, percent: action.percent };
+      return {...state, ...getAudioState(action.audio) };
     case SET_PROGRESS:
-      return {...state, progress: action.progress, duration: action.duration };
+      return {...state, ...getAudioState(action.audio) };
     case TOGGLE_FAVORITE:
       const songs = state.songs.map(clone);
       const song = find(songs, {id: state.currentID});
@@ -79,6 +92,8 @@ export default function audio(state = initialState, action) {
       return {...state, songs };
     case TOGGLE_REPEAT:
       return {...state, isRepeating: !state.isRepeating };
+    case TOGGLE_LOOP:
+      return {...state, ...getAudioState(action.audio) };
     default:
       return state
   }
