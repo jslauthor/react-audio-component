@@ -58,8 +58,6 @@ export default class ArtistInfo extends React.Component {
   render() {
 
     const { title, artist, volume, songID } = this.props;
-
-    console.log(this.state.marqueeDuration)
     const animate = {
       animation: `marquee ${this.state.marqueeDuration}s linear infinite`,
       animationDelay: '1s',
