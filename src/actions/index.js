@@ -15,6 +15,11 @@ export function play(audio) {
   return { type: types.PLAY, isPlaying: !audio.paused }
 }
 
+export function pause(audio) {
+  audio.pause();
+  return { type: types.PAUSE, isPlaying: !audio.paused }
+}
+
 export function next(audio) {
   audio.currentTime = 0; // need to reset the song if it's the same
   return { type: types.NEXT, isPlaying: !audio.paused }

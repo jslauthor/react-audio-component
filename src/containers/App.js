@@ -65,9 +65,11 @@ export default class App extends React.Component {
   }
 
   handleEnd = () => {
-    console.log('hi!')
+    const audio = ReactDOM.findDOMNode(this.refs.audio);
     if (this.props.audio.isRepeating) {
-      this.props.next(ReactDOM.findDOMNode(this.refs.audio));
+      this.props.next(audio);
+    } else {
+      this.props.pause(audio);
     }
   }
 

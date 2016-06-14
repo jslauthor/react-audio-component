@@ -3,7 +3,7 @@ import {
   UPDATE_VOLUME, NEXT, PREVIOUS,
   PLAY, SET_TIME, SET_PROGRESS,
   TOGGLE_FAVORITE, TOGGLE_REPEAT,
-  UPDATE_POSITION
+  UPDATE_POSITION, PAUSE
 } from '../constants/ActionTypes'
 
 import find from 'lodash/find';
@@ -50,6 +50,7 @@ export default function audio(state = initialState, action) {
       const songsArray = sortBy(action.songs, ['id']);
       return {...state, songs: songsArray, currentID: songsArray[0].id };
     case PLAY:
+    case PAUSE:
       return {...state, isPlaying: action.isPlaying, autoplay: true };
     case NEXT:
       return {

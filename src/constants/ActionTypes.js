@@ -1,5 +1,6 @@
 export const INITIALIZE = 'INITIALIZE'
 export const PLAY = 'PLAY'
+export const PAUSE = 'PAUSE'
 export const NEXT = 'NEXT'
 export const PREVIOUS = 'PREVIOUS'
 export const UPDATE_BUFFER = 'UPDATE_BUFFER'
