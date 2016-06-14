@@ -18,26 +18,10 @@
     },
     {
       "id": 3,
-      "coverURL": "/public/illenium_cover.jpg",
-      "audioFile": "/public/with_u_newVersion_4_FINAL.mp3",
-      "title": "Another",
-      "artist": "Another",
-      "favorite": true
-    },
-    {
-      "id": 4,
-      "coverURL": "/public/miro_cover.jpg",
-      "audioFile": "/public/with_u_newVersion_4_FINAL.mp3",
-      "title": "Illenium",
-      "artist": "Crystal",
-      "favorite": false
-    },
-    {
-      "id": 5,
-      "coverURL": "/public/illenium_cover.jpg",
-      "audioFile": "/public/with_u_newVersion_4_FINAL.mp3",
-      "title": "Delerium",
-      "artist": "Title",
+      "coverURL": "/public/without_you.jpg",
+      "audioFile": "/public/without_you.mp3",
+      "title": "Illenium - Without You (Ft. SKYLR)",
+      "artist": "Ryan Exley (Remix)",
       "favorite": true
     }
   ]
