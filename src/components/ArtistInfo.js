@@ -55,6 +55,10 @@ export default class ArtistInfo extends React.Component {
     }
   }
 
+  handleImageError = (e) => {
+    e.currentTarget.src = require("raw!../assets/default_cover.txt");
+  }
+
   render() {
 
     const { title, artist, volume, songID } = this.props;
@@ -72,7 +76,8 @@ export default class ArtistInfo extends React.Component {
             transitionName="cover"
             transitionEnterTimeout={250}
             transitionLeaveTimeout={250}>
-            <img key={songID} className="artist-info__cover" src={this.props.coverURL} />
+            <img key={songID} className="artist-info__cover" src={this.props.coverURL}
+            onError={this.handleImageError} />
           </ReactCSSTransitionGroup>
         </div>
 
