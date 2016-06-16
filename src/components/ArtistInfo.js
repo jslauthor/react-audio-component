@@ -9,6 +9,9 @@ import isFunction from 'lodash/isFunction';
 import SpeakerIcon from './svg/SpeakerIcon.js';
 import Marquee from 'react-marquee';
 import cx from 'classnames';
+import Swipeable from 'react-swipeable';
+import partial from 'lodash/partial';
+import invoke from 'lodash/invoke';
 
 const SpeakerHandle = props =>
   <div className="rc-slider-handle" style={{left: Math.max((props.offset*.96), 4) + '%'}}>
@@ -53,6 +56,7 @@ export default class ArtistInfo extends React.Component {
   }
 
   onVolumeChange = (value) => {
+    console.log(value);
     if (isFunction(this.props.onVolumeChange)) {
       this.props.onVolumeChange(value);
     }
@@ -60,6 +64,19 @@ export default class ArtistInfo extends React.Component {
 
   handleImageError = (e) => {
     e.currentTarget.src = require("raw!../assets/default_cover.txt");
+  }
+
+  handleSwiping = (e) => {
+    if (typeof e === 'string') {
+      switch (e) {
+        case 'left':
+          invoke(this.props, 'onNext');
+          break;
+        case 'right':
+          invoke(this.props, 'onPrevious');
+          break;
+      }
+    }
   }
 
   render() {
@@ -71,8 +88,6 @@ export default class ArtistInfo extends React.Component {
       animationDirection: 'alternate'
     };
 
-
-
     return (
       <div className="artist-info">
 
@@ -83,15 +98,19 @@ export default class ArtistInfo extends React.Component {
           </div>
         }
 
-        <div className="artist-info__cover-container">
-          <ReactCSSTransitionGroup
-            transitionName="cover"
-            transitionEnterTimeout={250}
-            transitionLeaveTimeout={250}>
-            <img key={songID} className="artist-info__cover" src={this.props.coverURL}
-            onError={this.handleImageError} />
-          </ReactCSSTransitionGroup>
-        </div>
+        <Swipeable
+          onSwipedRight={partial(this.handleSwiping, 'right')}
+          onSwipedLeft={partial(this.handleSwiping, 'left')}>
+          <div className="artist-info__cover-container">
+            <ReactCSSTransitionGroup
+              transitionName="cover"
+              transitionEnterTimeout={250}
+              transitionLeaveTimeout={250}>
+              <img key={songID} className="artist-info__cover" src={this.props.coverURL}
+              onError={this.handleImageError} />
+            </ReactCSSTransitionGroup>
+          </div>
+        </Swipeable>
 
         <ReactSlider
           onChange={this.onVolumeChange}

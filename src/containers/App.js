@@ -133,6 +133,8 @@ export default class App extends React.Component {
           artist={song.artist}
           volume={volume}
           hasError={error != null}
+          onNext={this.handleNext}
+          onPrevious={this.handlePrevious}
           onVolumeChange={this.handleVolumeChange} />
 
       </div>

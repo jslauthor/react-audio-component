@@ -16,7 +16,7 @@ $maxCoverSize: 257px;
     height: $maxCoverSize;
     width: $maxCoverSize;
     display: flex;
-    user-select: none;
+    /*user-select: none;*/
     flex-grow: 1;
     position: relative;
   }
