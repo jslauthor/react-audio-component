@@ -1,6 +1,6 @@
 # React Audio Component Example Project
 
-A beautiful example project demonstrating how to build an audio player in React. Desktop only--Mobile coming.
+A beautiful example project demonstrating how to build an audio player in React. Desktop optimized though it works on mobile down to iPhone 5 resolutions.
 
 ## The Player
 
