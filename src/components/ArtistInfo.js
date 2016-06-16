@@ -12,6 +12,7 @@ import cx from 'classnames';
 import Swipeable from 'react-swipeable';
 import partial from 'lodash/partial';
 import invoke from 'lodash/invoke';
+import detectMobile from '../utils/detection';
 
 const SpeakerHandle = props =>
   <div className="rc-slider-handle" style={{left: Math.max((props.offset*.96), 4) + '%'}}>
@@ -22,9 +23,11 @@ export default class ArtistInfo extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       showMarquee: false,
-      marqueeDuration: 0
+      marqueeDuration: 0,
+      isMobile: detectMobile()
     }
   }
 
@@ -56,7 +59,6 @@ export default class ArtistInfo extends React.Component {
   }
 
   onVolumeChange = (value) => {
-    console.log(value);
     if (isFunction(this.props.onVolumeChange)) {
       this.props.onVolumeChange(value);
     }
@@ -112,10 +114,13 @@ export default class ArtistInfo extends React.Component {
           </div>
         </Swipeable>
 
-        <ReactSlider
-          onChange={this.onVolumeChange}
-          value={volume}
-          handle={<SpeakerHandle />} />
+        {
+          !this.state.isMobile &&
+          <ReactSlider
+            onChange={this.onVolumeChange}
+            value={volume}
+            handle={<SpeakerHandle />} />
+        }
 
         <div className="artist-info__song">
           <div className="artist-info_title">
